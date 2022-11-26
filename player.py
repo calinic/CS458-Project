@@ -26,7 +26,7 @@ class Player(Entity):
         self.destroy_attack = destroy_attack
         self.weapon_index = 0
         self.weapon = list(weapon_data.keys())[self.weapon_index]
-        print(self.weapon)
+        #print(self.weapon)
         self.can_switch_weapon = True 
         self.weapon_switch_time = None
         self.switch_duration_cooldown = 200
@@ -51,7 +51,7 @@ class Player(Entity):
         self.invulnerability_duration = 500 
 
     def import_player_assets(self):
-        character_path = './graphics/player/'
+        character_path = './graphics/Sasquatch/'
         self.animations = {'up': [], 'down':[], 'left':[], 'right':[],
             'right_idle':[], 'left_idle':[], 'up_idle':[], 'down_idle':[],
             'right_attack':[], 'left_attack':[], 'up_attack':[], 'down_attack':[]}
@@ -183,9 +183,21 @@ class Player(Entity):
         weapon_damage = weapon_data[self.weapon]['damage']
         return base_damage + weapon_damage 
 
+    def get_full_magic_damage(self):
+        base_damage = self.stats['magic']
+        spell_damage = magic_data[self.magic]['strength']
+        return base_damage + spell_damage
+
+    def energy_recovery(self):
+        if self.energy < self.stats['energy']:
+            self.energy += 0.01 * self.stats['magic']
+        else:
+            self.energy = self.stats['energy']
+
     def update(self):
         self.input()
         self.cooldowns()
         self.get_status()
         self.animate()
         self.move(self.speed)
+        self.energy_recovery()
