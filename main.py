@@ -1,6 +1,7 @@
 import pygame, sys, time
 from settings import *
-from level import Level, Level2
+from level import Level
+from level2 import Level2
 from button import *
 
 class Game:
@@ -70,7 +71,7 @@ class Game:
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_m:
-                        self.level.toggle_menu()
+                        self.level2.toggle_menu()
  
             self.screen.fill(WATER_COLOR)
             self.level2.run()                 
