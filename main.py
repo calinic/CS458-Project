@@ -5,6 +5,7 @@ from level import Level
 class Game:
     def __init__(self):
         # general setup
+        self.state = 'main_game'
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH,HEIGTH))
         pygame.display.set_caption('Sasquatch')
@@ -17,8 +18,11 @@ class Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_m:
+                        self.level.toggle_menu()
  
-            self.screen.fill('black')			# filling screen with color 
+            self.screen.fill(WATER_COLOR)			# filling screen with color 
             self.level.run()                    # calling run method from Level.py 
             pygame.display.update()				# updating the screen 
             self.clock.tick(FPS)				# controlling framerate 
