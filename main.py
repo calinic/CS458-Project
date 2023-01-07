@@ -11,7 +11,7 @@ class Game:
         # general setup
         self.screen = pygame.display.set_mode((WIDTH,HEIGTH))
         self.backgound = pygame.image.load("./graphics/menu/background.jpg")
-        pygame.display.set_caption('Sasquatch')
+        pygame.display.set_caption('Sasquatch: The Game')
         self.clock = pygame.time.Clock()
         self.level = Level()
         self.level2 = Level2()
