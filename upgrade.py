@@ -1,5 +1,5 @@
-import pygame 
-from settings import * 
+import pygame
+from settings import *
 
 class Upgrade: 
     def __init__(self,player):
@@ -38,6 +38,9 @@ class Upgrade:
                 self.can_move = False
                 self.selection_time = pygame.time.get_ticks()
                 self.item_list[self.selection_index].trigger(self.player)
+            #elif keys[pygame.K_ESCAPE]:
+            #    game = Game()
+            #    game.level_select()
 
     def selection_cooldown(self):
         if not self.can_move:

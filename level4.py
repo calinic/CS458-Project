@@ -13,7 +13,7 @@ from particles import AnimationPlayer
 from magic import MagicPlayer
 from upgrade import Upgrade
 
-class Level:
+class Level4:
     def __init__(self):
         
         # get display surface 
@@ -42,10 +42,10 @@ class Level:
 
     def create_map(self):
         layouts = {
-            'boundary': import_csv_layout('./nic_map/nic_BoundaryBlocks.csv'),
-            'grass': import_csv_layout('./nic_map/nic_Grass.csv'),
-            'object': import_csv_layout('./nic_map/nic_Objects.csv'),
-            'entities': import_csv_layout('./nic_map/nic_Entities.csv'),
+            'boundary': import_csv_layout('./jacob_map/jacob_BoundaryBlocks.csv'),
+            #'grass': import_csv_layout('./jacob_map/brian_Grass.csv'),
+            'object': import_csv_layout('./jacob_map/jacob_Objects.csv'),
+            'entities': import_csv_layout('./jacob_map/jacob_Entities.csv'),
         }
         grpahics = {
             'grass': import_folder('./nic_map/grass'),
@@ -164,7 +164,7 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.offset = pygame.math.Vector2()
 
         #creating the floor 
-        self.floor_surf = pygame.image.load('./nic_map/64Map.png')
+        self.floor_surf = pygame.image.load('./jacob_map/ForestMap.png')
         #self.floor_surf = pygame.image.load('./graphics/tilemap/MarshMapMkII.png')
         self.floor_rect = self.floor_surf.get_rect(topleft = (0,0))
 

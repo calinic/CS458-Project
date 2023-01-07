@@ -1,9 +1,9 @@
 from tokenize import group
-import pygame 
+import pygame
 from settings import *
 from tile import Tile
 from player import Player
-from debug import debug 
+from debug import debug
 from support import *
 from random import choice, random, randint
 from weapon import Weapon
@@ -13,14 +13,14 @@ from particles import AnimationPlayer
 from magic import MagicPlayer
 from upgrade import Upgrade
 
-class Level:
+class Level3:
     def __init__(self):
-        
-        # get display surface 
+
+        # get display surface
         self.display_surface = pygame.display.get_surface()
         self.game_paused = False
-        
-        # sprite group setup 
+
+        # sprite group setup
         self.visible_sprites = YSortCameraGroup()
         self.obstacle_sprites = pygame.sprite.Group()
 
@@ -29,23 +29,23 @@ class Level:
         self.attack_sprites = pygame.sprite.Group()
         self.attackable_sprites = pygame.sprite.Group()
 
-        # sprite setup 
+        # sprite setup
         self.create_map()
 
-        #user interface 
+        #user interface
         self.ui = UI()
         self.upgrade = Upgrade(self.player)
 
-        #particles 
+        #particles
         self.animation_player = AnimationPlayer()
         self.magic_player = MagicPlayer(self.animation_player)
 
     def create_map(self):
         layouts = {
-            'boundary': import_csv_layout('./nic_map/nic_BoundaryBlocks.csv'),
-            'grass': import_csv_layout('./nic_map/nic_Grass.csv'),
-            'object': import_csv_layout('./nic_map/nic_Objects.csv'),
-            'entities': import_csv_layout('./nic_map/nic_Entities.csv'),
+            'boundary': import_csv_layout('./kai_map/MarshMapMkII_Boundary.csv'),
+            #'grass': import_csv_layout('./kai_map/MarshMapMkII_Grass.csv'),
+            'object': import_csv_layout('./kai_map/MarshMapMkII_Objects.csv'),
+            'entities': import_csv_layout('./kai_map/MarshMapMkII_Player_Entity.csv'),
         }
         grpahics = {
             'grass': import_folder('./nic_map/grass'),
@@ -58,20 +58,20 @@ class Level:
                     if col != '-1':
                         x = col_index * TILESIZE
                         y = row_index * TILESIZE
-                        
-                        #creating invisible boundary tiles 
+
+                        #creating invisible boundary tiles
                         if style == 'boundary':
                             Tile((x,y),[self.obstacle_sprites],'invisible')
-                        
-                        #creating grass tiles 
+
+                        #creating grass tiles
                         if style == 'grass':
                             random_grass_image = choice(grpahics['grass'])
-                            Tile((x,y),[self.visible_sprites, self.obstacle_sprites,self.attackable_sprites],'grass',random_grass_image)				
-                        
+                            Tile((x,y),[self.visible_sprites, self.obstacle_sprites,self.attackable_sprites],'grass',random_grass_image)
+
                         if style == 'object':
                             surf = grpahics['objects'][int(col)]
                             Tile((x,y),[self.visible_sprites, self.obstacle_sprites],'object',surf)
-                        
+
                         if style == 'entities':
                             if col == '394':
                                 self.player = Player(
@@ -97,11 +97,11 @@ class Level:
 
     def create_attack(self):
         self.current_attack = Weapon(self.player,[self.visible_sprites,self.attack_sprites])
-    
+
     def create_magic(self,style,strength,cost):
         if style == 'heal':
             self.magic_player.heal(self.player,strength,cost,[self.visible_sprites])
-        
+
         if style == 'flame':
             self.magic_player.flame(self.player, cost, [self.visible_sprites,self.attack_sprites])
 
@@ -124,7 +124,7 @@ class Level:
                             target_sprite.kill()
                         else:
                             target_sprite.get_damage(self.player,attack_sprite.sprite_type)
-    
+
     def damage_player(self,amount,attack_type):
         if self.player.vulnerable:
             self.player.health -= amount
@@ -145,7 +145,7 @@ class Level:
         self.visible_sprites.custom_draw(self.player)
         self.ui.display(self.player)
         #debug(self.player.status)
-        
+
         if self.game_paused:
             self.upgrade.display()
         else:
@@ -163,8 +163,8 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.half_height = self.display_surface.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
 
-        #creating the floor 
-        self.floor_surf = pygame.image.load('./nic_map/64Map.png')
+        #creating the floor
+        self.floor_surf = pygame.image.load('./kai_map/MarshMapMkII.png')
         #self.floor_surf = pygame.image.load('./graphics/tilemap/MarshMapMkII.png')
         self.floor_rect = self.floor_surf.get_rect(topleft = (0,0))
 
@@ -173,7 +173,7 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.offset.x = player.rect.centerx - self.half_width
         self.offset.y = player.rect.centery - self.half_height
 
-        #drawing the floor 
+        #drawing the floor
         floor_offset_pos = self.floor_rect.topleft - self.offset
         self.display_surface.blit(self.floor_surf,floor_offset_pos)
 
