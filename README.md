@@ -9,7 +9,7 @@ To play Sasquatch Game you need Python 3.10, which you can download from https:/
 
 Additionally, you will need the Pygame Library, which can be installed here: https://www.pygame.org/download.shtml. Follow the instructions given on the Pygame website to guide you through the installation process.
 
-By clicking the following link: https://github.com/calinic/CS458-Project, you will be able to download all of the necessary code to run the game. To do so, first:
+You can download all the necessary game code from this page. To do so, first:
 1. Click on the green “<> Code” button with the drop-down arrow.
 2. Click the “download ZIP” button, which will download the file in zip format to your computer. 
 3. The file “CS458-Project-master.zip” should appear in your downloads pop-up. Click the “Show in folder” button, which will have the icon of a folder, to take you directly to where it downloaded to your computer. Note: if you don’t see the mentioned pop-up, simply click the “Settings and more” button on the top-right of your browser, and navigate to “Downloads” - from there the same instructions apply. 
