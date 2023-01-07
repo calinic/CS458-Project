@@ -1,7 +1,7 @@
 # Cal Poly Humboldt CS 458 - Software Engineering Senior Capstone Project Fall 2022 
 ![Main Menu Pic](main_menu.png)
 ![Community Forest Pic](community_forest.png)
-## **Team Members:** 
+## **Team Members** 
 - Nicolas Nellum
 - Brian Buchmiller
 - Kai Yukiharo
